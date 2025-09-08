@@ -73,10 +73,6 @@ router.get('/', async (req, res) => {
                             text: sid
                         });
 
-                    } catch (e) {
-                        exec('pm2 restart AGNI);
-                    }
-
                     await delay(100);
                     return await removeFile('./session');
                     process.exit(0);
@@ -85,8 +81,7 @@ router.get('/', async (req, res) => {
                     DanuwaPair();
                 }
             });
-        } catch (err) {
-            exec('pm2 restart AGNI');
+        
             console.log("service restarted");
             DanuwaPair();
             await removeFile('./session');
@@ -100,7 +95,7 @@ router.get('/', async (req, res) => {
 
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
-    exec('pm2 restart AGNI');
+    
 });
 
 
