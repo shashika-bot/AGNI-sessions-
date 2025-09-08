@@ -8,6 +8,7 @@
   <style>
     body {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -29,13 +30,47 @@
       object-fit: cover;
     }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    /* AGNI Title */
+    .main-title {
+      font-size: 60px;
+      text-align: center;
+      margin: 10px 0;
+      color: black;
+      text-shadow: 0 0 15px #4885ed, 0 0 30px #4885ed;
+      animation: glowText 2s infinite alternate;
+    }
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px #4885ed, 0 0 20px #4885ed; }
+      to   { text-shadow: 0 0 25px #4885ed, 0 0 50px #4885ed; }
     }
 
-    /* Main glowing box */
+    /* Circle logo with glow */
+    .logo-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #4885ed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px auto;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 15px #4885ed, 0 0 30px #4885ed, 0 0 60px #4885ed;
+      animation: circleGlow 2s infinite alternate;
+      overflow: hidden;
+    }
+    .logo-circle img {
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    @keyframes circleGlow {
+      from { box-shadow: 0 0 10px #4885ed, 0 0 20px #4885ed; }
+      to   { box-shadow: 0 0 25px #4885ed, 0 0 50px #4885ed; }
+    }
+
+    /* Blue Box */
     .box {
       width: 320px;
       padding: 20px;
@@ -43,13 +78,27 @@
       text-align: center;
       background-color: rgba(72, 133, 237, 0.85);
       border-radius: 15px;
+      margin: 30px auto;
       box-shadow: 0 0 25px rgba(72,133,237,0.9);
       animation: glow 2s infinite alternate;
+      overflow: hidden;
     }
-
     @keyframes glow {
       from { box-shadow: 0 0 10px #4885ed, 0 0 20px #4885ed; }
-      to { box-shadow: 0 0 25px #4885ed, 0 0 50px #4885ed; }
+      to   { box-shadow: 0 0 25px #4885ed, 0 0 50px #4885ed; }
+    }
+
+    /* Shadow image inside the box */
+    .box-shadow {
+      position: absolute;
+      inset: 0;
+      background: url("https://files.catbox.moe/cnjlec.jpeg") center/cover no-repeat;
+      opacity: 0.15;   /* shadow effect */
+      z-index: 0;
+    }
+    .box #text {
+      position: relative;
+      z-index: 1; /* keep text above shadow */
     }
 
     #text h3 {
@@ -150,6 +199,16 @@
     .social-links a:hover {
       transform: scale(1.2);
     }
+
+    /* Footer */
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 14px;
+      color: #fff;
+      text-align: center;
+      opacity: 0.7;
+    }
   </style>
 </head>
 <body>
@@ -158,38 +217,51 @@
     <source src="https://files.catbox.moe/v5eg5x.mp4" type="video/mp4">
   </video>
 
-  <div class="container">
-    <div class="main">
-      <div class="box" id="box">
-        <div id="text">
-          <h3 class="centered-text">Link with phone number</h3>
-          <h6>🔢 Enter your number with country code.</h6>
+  <!-- Title -->
+  <h1 class="main-title">AGNI</h1>
 
-          <div class="input-container">
-            <input placeholder="+94729xxxxxx" type="number" id="number" name="">
-            <button id="submit">Submit</button>
-          </div>
+  <!-- Circle Logo -->
+  <div class="logo-circle">
+    <img src="https://files.catbox.moe/5janls.jpg" alt="Logo">
+  </div>
 
-          <!-- Loading spinner -->
-          <div id="loading-spinner">
-            <i class="fas fa-spinner fa-spin"></i>
-          </div>
+  <!-- Blue Box -->
+  <div class="box" id="box">
+    <div class="box-shadow"></div>
+    <div id="text">
+      <h3 class="centered-text"></h3>
+      <h6> Enter your number with country code.</h6>
 
-          <main id="pair"></main>
+      <div class="input-container">
+        <input placeholder="+94729xxxxxx" type="number" id="number" name="">
+        <button id="submit">ɑɡꞃı</button>
+      </div>
 
-          <!-- Social icons -->
-          <div class="social-links">
-            <a href="https://whatsapp.com/channel/0029VbBLtl8AInPeTgZDF615" target="_blank" class="whatsapp">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="https://github.com/shashika-bot/AGNI" target="_blank" class="github">
-              <i class="fab fa-github"></i>
-            </a>
-          </div>
-        </div>
+      <!-- Loading spinner -->
+      <div id="loading-spinner">
+        <i class="fas fa-spinner fa-spin"></i>
+      </div>
+
+      <main id="pair"></main>
+
+      <!-- Social icons -->
+      <div class="social-links">
+        <a href="https://whatsapp.com/channel/0029VbBLtl8AInPeTgZDF615" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://github.com/shashika-bot/AGNI" target="_blank" class="github">
+          <i class="fab fa-github"></i>
+        </a>
       </div>
     </div>
   </div>
+  
+  
+  
+  
+  
+  <!-- Footer -->
+  <footer>© Made by Shashika Dilshan</footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
